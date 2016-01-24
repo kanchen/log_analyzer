@@ -27,27 +27,29 @@ The following command process the log file data/sample.log and presents the resu
 
 `./analyzer.rb --log-file data/sample.log`
 
+![Alt text](/data/regular-screen.jpg?raw=true "Result Screenshot")
+
 ### Process a log file and output the result to a file
 The following command process the log file data/sample.log and outputs the result to data/results.txt file
 
 `./analyzer.rb --log-file data/sample.log --output-file data/results.txt`
 
+![Alt text](/data/regular-screen.jpg?raw=true "Result Screenshot")
+
 ### Process in verbose mode
 The --versose or -v command switch can be used to turn on verbose mode. The following two commands perform exactly the same as above cases excpet it outputs additional information to stdout
 
 `./analyzer.rb --log-file data/sample.log --verbose`
+![Alt text](/data/verbose-screen.jpg?raw=true "Result Screenshot")
+
 `./analyzer.rb --log-file data/sample.log --output-file data/results.txt -v`
+![Alt text](/data/verbose-with-output-screen.jpg?raw=true "Result Screenshot")
 
 ### Sort date ascending mode
 THe --ascending or -a command switch can be used to turn sorting date in the ascending order. By default, date is sorted in the descending order(most recently first)
 
 `./analyzer.rb --log-file data/sample.log --ascending`
 `./analyzer.rb --log-file data/sample.log --output-file data/results.txt -a`
-
-### Lastly, the help mode
-THe --help or -h command switch can be used to print the usage message. If the required --log-file switch is missing, and error message is presented in addition to the help message.
-
-`./analyzer.rb --help`
 
 ##Build
 Clone the github project. This tool is developed using Ruby 2.0. It requires the Ruby gem of psych to parse an YMAL configuration file. Please refer to [https://rubygems.org/gems/psych/versions/2.0.17] for inastallation.
@@ -59,6 +61,8 @@ The only requirement to run the command tool is that it is executable on Linux m
 Unit testing can be performed by the following command in the directory the project is cloned to:
 
 `ruby tests/test_all_tests.rb`
+
+![Alt text](/data/unit-testings.jpg?raw=true "Result Screenshot")
 
 ##Configuration
 There is a configuration file config.yml. The tool will look for this file under user's $HOME/.analyzer/ directory or the config/ directory where the tool is installed if it is not exist in $HOME/.analyzer/. This configuration file has two sections. One section contains where and what are the log files to produce. The other section contains how the map different key words to OS categories. Log entry parsing errors will be logged in the error file, while the info file will contains entries that OS information is not found for a User-Agent.
