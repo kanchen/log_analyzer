@@ -1,6 +1,6 @@
 # Log Analyzer
 
-This command line tool that parses Apache web server access log files then presents the following info to the user:
+This command line tool parses Apache web server access log files then presents the following info to the user:
 
 * The number of requests served by day
 * The top three(3) most frequent User Agents by day
@@ -34,7 +34,7 @@ The following command process the log file data/sample.log and outputs the resul
 
 `./analyzer.rb --log-file data/sample.log --output-file data/results.txt`
 
-![Alt text](/data/regular-screen.jpg?raw=true "Result Screenshot")
+![Alt text](/data/output-to-file.jpg?raw=true "Result Screenshot")
 
 ### Process in verbose mode
 The --versose or -v command switch can be used to turn on verbose mode. The following two commands perform exactly the same as above cases excpet it outputs additional information to stdout
@@ -49,6 +49,9 @@ The --versose or -v command switch can be used to turn on verbose mode. The foll
 THe --ascending or -a command switch can be used to turn sorting date in the ascending order. By default, date is sorted in the descending order(most recently first)
 
 `./analyzer.rb --log-file data/sample.log --ascending`
+
+![Alt text](/data/ascending.jpg?raw=true "Result Screenshot")
+
 `./analyzer.rb --log-file data/sample.log --output-file data/results.txt -a`
 
 ##Build
