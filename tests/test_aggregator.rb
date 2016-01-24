@@ -60,4 +60,25 @@ class TestAggregator < Test::Unit::TestCase
     assert_equal(0, @ag.data_bag[date1][:oses]["Windows"]["POST"])
   end
 
+  def test_sort
+    date1 = "01/Dec/2011"
+    date2 = "06/Jan/2013"
+    date3 = "05/Mar/2012"
+    ascending_list = [date1, date3, date2]
+    descending_list = ascending_list.reverse
+    ua1 = "Sosospider+(+http://help.soso.com/webspider.htm)"
+    ua2 = "WordPress/3.2.1; http://aviflax.com"
+    @ag.clear
+    @ag.add(date1, "GET", "Linux", ua1)
+    @ag.add(date2, "GET", "Linux", ua2)
+    @ag.add(date3, "POST", "Linux", ua1)
+    sorted_list = @ag.sort_by_date(true).each_with_index do |item, idx|
+      assert_equal(ascending_list[idx], item[0])
+    end
+
+    sorted_list = @ag.sort_by_date(false).each_with_index do |item, idx|
+      assert_equal(descending_list[idx], item[0])
+    end
+  end
+
 end
