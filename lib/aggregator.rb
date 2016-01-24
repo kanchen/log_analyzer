@@ -90,7 +90,7 @@ module Analyzer
           report_os_get_post_ratio(data_list, f)
 
         ensure
-          if !output_file.nil?
+          if (!output_file.nil?) && (!f.nil?)
             f.close
           end
         end
