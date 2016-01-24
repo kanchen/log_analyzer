@@ -2,7 +2,7 @@ module Analyzer
   require 'optparse'
   FIELD_LENGTH ||= 16
   class Options
-   attr_reader :log_file, :verbose, :output_file
+   attr_reader :log_file, :verbose, :ascending, :output_file
     def parse_cl(name)
 
       options = {}
@@ -16,6 +16,10 @@ module Analyzer
         opts.on("-o", "--output-file <output-file>", "Output file name") do |v|
           @output_file = v
           options["output-file"] = v
+        end
+        opts.on("-a", "--ascending", "Report date in ascending order(default descending)") do |v|
+          @ascending = v
+          options["ascending"] = v
         end
         opts.on("-v", "--verbose", "Verbose mode") do |v|
           @verbose = v

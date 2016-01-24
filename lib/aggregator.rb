@@ -1,5 +1,5 @@
 module Analyzer
-  
+    require 'Date'
     class Aggregator
       attr_accessor :verbose, :output_file, :data_bag
 
@@ -67,17 +67,27 @@ module Analyzer
         @data_bag[date] = data
       end
 
-      def reports()
+      #this method only returns a sorted array of key value pairs.
+      # it does not change the original data_bag
+      def sort_by_date (ascending = false)
+        if ascending
+          @data_bag.sort {|x, y| DateTime.parse(x[0]) <=> DateTime.parse(y[0])}
+        else
+          @data_bag.sort {|x, y| DateTime.parse(y[0]) <=> DateTime.parse(x[0])}
+        end
+      end
+
+      def reports(ascending = false)
         begin
           if output_file.nil?
             f = $stdout
           else
             f = File.open(output_file, 'w')
           end
-
-          report_total_requests(f)
-          report_top_3_agents(f)
-          report_os_get_post_ratio(f)
+          data_list = sort_by_date(ascending)
+          report_total_requests(data_list, f)
+          report_top_3_agents(data_list, f)
+          report_os_get_post_ratio(data_list, f)
 
         ensure
           if !output_file.nil?
@@ -86,10 +96,11 @@ module Analyzer
         end
       end
 
-      def report_top_3_agents(f)
+      # data_list is an array of [k, v]
+      def report_top_3_agents(data_list, f)
         Analyzer::Utils.report_title(f, "Three(3) Most Frequent User Agents by Day")
         f.printf "%-#{Analyzer::FIELD_LENGTH}s%-#{Analyzer::FIELD_LENGTH}s%-#{Analyzer::FIELD_LENGTH}s\n", "Date", "Requests", "User-Agent"
-        (@data_bag.sort {|x, y| x <=> y }).each do |date, data|
+        data_list.each do |date, data|
           rank = 0
           (data[:agents].sort_by {|k,v| v}.reverse).each do |ag, rv|
             rank += 1
@@ -101,16 +112,16 @@ module Analyzer
         end
       end
 
-
-      def report_total_requests(f)
+      # data_list is an array of [k, v]
+      def report_total_requests(data_list, f)
         Analyzer::Utils.report_title(f, "Number of Requsts Servered by Day")
         f.printf "%-#{Analyzer::FIELD_LENGTH}s%-#{Analyzer::FIELD_LENGTH}s\n", "Date", "Requests"
-        (@data_bag.sort {|x, y| x <=> y }).each do |date, data|
+        data_list.each do |date, data|
           f.printf "%-#{Analyzer::FIELD_LENGTH}s%-#{Analyzer::FIELD_LENGTH}s\n", date, data[:requests]
         end
       end
 
-      def report_os_get_post_ratio(f)
+      def report_os_get_post_ratio(data_list, f)
         Analyzer::Utils.report_title(f, "GET to POST Ratio by OS by Day")
           f.printf "%-#{Analyzer::FIELD_LENGTH}s", "Date"
           (@os_list.map {|o| o.keys.first} + [OS_UNKOWN]).each do |o|
@@ -118,7 +129,7 @@ module Analyzer
           end
           f.printf "\n"
 
-          (@data_bag.sort {|x, y| x <=> y }).each do |date, data|
+          data_list.each do |date, data|
             f.printf "%-#{Analyzer::FIELD_LENGTH}s", date
             (@os_list.map {|o| o.keys.first} + [OS_UNKOWN]).each do |o|
               no_gets = data[:oses][o]["GET"]

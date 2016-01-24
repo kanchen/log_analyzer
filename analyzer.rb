@@ -37,7 +37,7 @@ module Analyzer
           os = matcher.os_match(user_agent)
           aggregator.add(date, method, os, user_agent)
         end
-        aggregator.reports
+        aggregator.reports(analyzer.options.ascending)
 
         if analyzer.options.verbose
           LogAnalyzer.summary(parser.records_processed, parser.records_rejected, matcher.agents_no_os)
