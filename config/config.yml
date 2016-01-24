@@ -1,0 +1,25 @@
+# The directory and filename for the tool
+logger:
+  dir: logs
+  error: analyzer_error.log
+  info: analyzer_info.log
+
+# The list of Operating System names to be identified and categorized
+# Sub-list of the OS is also used to be matched and aggregated to the main OS name
+# Analyzer log entries will be produced for any entry that does not match any of the OS name in the list
+# for further update this list
+
+os-list:
+  - Linux:
+  - Windows:
+    - Windows NT
+  - "Mac OS":
+    - OS X
+# iPhone OS 1, iPhone OS 2, iPhone OS 3, iOS 4, iOS 5, iOS 6, iOS 7, iOS 8 and iOS 9  
+  - iOS:
+    - iPhone OS
+  - Android:
+  - Solaris:
+    - SunOS
+    - Oracle Solaris
+  - Unix:
