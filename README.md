@@ -8,6 +8,8 @@ This command line tool that parses Apache web server access log files then prese
 
 ##Usage of the tool:
 
+![Alt text](/data/help-screen.jpg?raw=true "Help Screenshot")
+
 ```
 Usage: analyzer.rb [options]
     -l, --log-file <log-file>        Log file name - required
