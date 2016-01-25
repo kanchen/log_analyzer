@@ -22,7 +22,7 @@ Common options:
 
 ## Typical usage
 
-### Process a log file and presnt the result on the console screen
+### Process a log file and presnts the result on the console screen
 The following command process the log file **data/sample.log** and presents the result on the stdout
 
 `./analyzer.rb -l data/sample.log`
