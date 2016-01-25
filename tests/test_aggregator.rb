@@ -5,7 +5,7 @@ class TestAggregator < Test::Unit::TestCase
 
   def setup
     @os_list = [{"Linux" => nil}, {"Windows" => nil}]
-    @ag = Analyzer::Aggregator.new(@os_list, true)
+    @aggr = Analyzer::Aggregator.new(@os_list, true)
   end
 
   def teardown
@@ -13,8 +13,8 @@ class TestAggregator < Test::Unit::TestCase
   end
 
   def test_clear
-    @ag.clear
-    assert(@ag.data_bag.empty?)
+    @aggr.clear
+    assert(@aggr.data_bag.empty?)
   end
 
   def test_add
@@ -22,28 +22,28 @@ class TestAggregator < Test::Unit::TestCase
     date2 = "22/Jan/2016"
     ua1 = "Sosospider+(+http://help.soso.com/webspider.htm)"
     ua2 = "WordPress/3.2.1; http://aviflax.com"
-    @ag.clear
-    @ag.add(date1, "GET", "Linux", ua1)
-    @ag.add(date1, "GET", "Linux", ua2)
-    @ag.add(date1, "POST", "Linux", ua1)
-    assert(!@ag.data_bag.empty?)
-    assert((! @ag.data_bag[date1].nil?) && (!@ag.data_bag[date1].empty?))
+    @aggr.clear
+    @aggr.add(date1, "GET", "Linux", ua1)
+    @aggr.add(date1, "GET", "Linux", ua2)
+    @aggr.add(date1, "POST", "Linux", ua1)
+    assert(!@aggr.data_bag.empty?)
+    assert((! @aggr.data_bag[date1].nil?) && (!@aggr.data_bag[date1].empty?))
 
     add_helper_1(date1, ua1, ua2)
 
-    @ag.add(date2, "GET", "Linux", ua1)
-    @ag.add(date2, "POST", "Linux", ua1)
-    @ag.add(date2, "POST", "Linux", ua1)
-    @ag.add(date2, "GET", "Windows", ua2)
-    @ag.add(date2, "POST", "Windows", ua2)
+    @aggr.add(date2, "GET", "Linux", ua1)
+    @aggr.add(date2, "POST", "Linux", ua1)
+    @aggr.add(date2, "POST", "Linux", ua1)
+    @aggr.add(date2, "GET", "Windows", ua2)
+    @aggr.add(date2, "POST", "Windows", ua2)
 
-    assert_equal(5, @ag.data_bag[date2][:requests])
-    assert_equal(3, @ag.data_bag[date2][:agents][ua1])
-    assert_equal(2, @ag.data_bag[date2][:agents][ua2])
-    assert_equal(1, @ag.data_bag[date2][:oses]["Linux"]["GET"])
-    assert_equal(2, @ag.data_bag[date2][:oses]["Linux"]["POST"])
-    assert_equal(1, @ag.data_bag[date2][:oses]["Windows"]["GET"])
-    assert_equal(1, @ag.data_bag[date2][:oses]["Windows"]["POST"])
+    assert_equal(5, @aggr.data_bag[date2][:requests])
+    assert_equal(3, @aggr.data_bag[date2][:agents][ua1])
+    assert_equal(2, @aggr.data_bag[date2][:agents][ua2])
+    assert_equal(1, @aggr.data_bag[date2][:oses]["Linux"]["GET"])
+    assert_equal(2, @aggr.data_bag[date2][:oses]["Linux"]["POST"])
+    assert_equal(1, @aggr.data_bag[date2][:oses]["Windows"]["GET"])
+    assert_equal(1, @aggr.data_bag[date2][:oses]["Windows"]["POST"])
 
     #make sure date1 data does not change
     add_helper_1(date1, ua1, ua2)
@@ -51,13 +51,13 @@ class TestAggregator < Test::Unit::TestCase
   end
 
   def add_helper_1(date, ua1, ua2)
-    assert_equal(3, @ag.data_bag[date][:requests])
-    assert_equal(2, @ag.data_bag[date][:agents][ua1])
-    assert_equal(1, @ag.data_bag[date][:agents][ua2])
-    assert_equal(2, @ag.data_bag[date][:oses]["Linux"]["GET"])
-    assert_equal(1, @ag.data_bag[date][:oses]["Linux"]["POST"])
-    assert_equal(0, @ag.data_bag[date][:oses]["Windows"]["GET"])
-    assert_equal(0, @ag.data_bag[date][:oses]["Windows"]["POST"])
+    assert_equal(3, @aggr.data_bag[date][:requests])
+    assert_equal(2, @aggr.data_bag[date][:agents][ua1])
+    assert_equal(1, @aggr.data_bag[date][:agents][ua2])
+    assert_equal(2, @aggr.data_bag[date][:oses]["Linux"]["GET"])
+    assert_equal(1, @aggr.data_bag[date][:oses]["Linux"]["POST"])
+    assert_equal(0, @aggr.data_bag[date][:oses]["Windows"]["GET"])
+    assert_equal(0, @aggr.data_bag[date][:oses]["Windows"]["POST"])
   end
 
   def test_sort
@@ -68,15 +68,15 @@ class TestAggregator < Test::Unit::TestCase
     descending_list = ascending_list.reverse
     ua1 = "Sosospider+(+http://help.soso.com/webspider.htm)"
     ua2 = "WordPress/3.2.1; http://aviflax.com"
-    @ag.clear
-    @ag.add(date1, "GET", "Linux", ua1)
-    @ag.add(date2, "GET", "Linux", ua2)
-    @ag.add(date3, "POST", "Linux", ua1)
-    sorted_list = @ag.sort_by_date(true).each_with_index do |item, idx|
+    @aggr.clear
+    @aggr.add(date1, "GET", "Linux", ua1)
+    @aggr.add(date2, "GET", "Linux", ua2)
+    @aggr.add(date3, "POST", "Linux", ua1)
+    @aggr.sort_by_date(true).each_with_index do |item, idx|
       assert_equal(ascending_list[idx], item[0])
     end
 
-    sorted_list = @ag.sort_by_date(false).each_with_index do |item, idx|
+    @aggr.sort_by_date(false).each_with_index do |item, idx|
       assert_equal(descending_list[idx], item[0])
     end
   end
