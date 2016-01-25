@@ -49,7 +49,7 @@ The **--versose** or **-v** command switch can be used to turn on verbose mode. 
 ![Alt text](/data/verbose-with-output-screen.jpg?raw=true "Result Screenshot")
 
 ### Sort date ascending mode
-THe **--ascending** or **-a** command switch can be used to sort date in the ascending order. By default, date is sorted in the descending order(most recently first)
+The **--ascending** or **-a** command switch can be used to sort date in the ascending order. By default, date is sorted in the descending order(most recently first)
 
 `./analyzer.rb --log-file data/sample.log --ascending`
 
@@ -60,8 +60,8 @@ THe **--ascending** or **-a** command switch can be used to sort date in the asc
 ![Alt text](/data/ascending-file.jpg?raw=true "Result Screenshot")
 
 ##Install and Build
-Clone this github project. This tool is developed using Ruby 2.0. It requires the Ruby gem of *psych* to parse an YMAL configuration file. Please refer to [https://rubygems.org/gems/psych/versions/2.0.17] for inastallation.
-Make sure it is executable, or invoke it with Ruby.
+Clone this github project. This tool is developed using Ruby 2.0. It requires the Ruby gem of **psych** to parse an YMAL configuration file(see Configuration). Please refer to [https://rubygems.org/gems/psych/versions/2.0.17] for the gem inastallation.
+Make sure **analyzer.rb** is executable, or invoke it with Ruby.
 
 ##Testing
 Unit testing can be performed by the following command in the directory the project is cloned to:
@@ -71,11 +71,10 @@ Unit testing can be performed by the following command in the directory the proj
 ![Alt text](/data/unit-testings.jpg?raw=true "Result Screenshot")
 
 ##Configuration
-There is a configuration file **config.yml**. The tool will look for this file under user's **$HOME/.analyzer/** directory or the **config/** directory where the tool is installed if it does not exist in **$HOME/.analyzer/**. This configuration file has two sections. One section contains where and what are the log files to produce. The other section contains how the map different key words to OS categories. Parsing errors will be logged in the error file, while the info file contains entries that OS information is not found in User-Agents.
+There is a configuration file **config.yml**. The tool will look for this file under user's **$HOME/.analyzer/** directory or the **config/** directory where the tool is installed if it does not exist in **$HOME/.analyzer/**. This configuration file has two sections. One section defines which directory and what log files logs go(see Results and Logs). The other section defines how to map different key words to OS categories.
 
-##Results, Logs and Screenshots
-The result of the **data/sample.log** is contained in the file **data/restuls.txt**. There are also the files **logs/analyzer_error.log** and **logs/analyzer_info.log**. The error log file contains records can not be parsed as Apache combined log format. The info file contains User-Agents do not have OS information by the current OS configuration in the config/config.yml
-There are also several screenshots in the data directory to be reviewed.
+##Results and Logs
+The result of the **data/sample.log** is contained in the file **data/restuls.txt**. There are also the files **logs/analyzer_error.log** and **logs/analyzer_info.log**. The error log file contains records can not be parsed as Apache combined log format. The info file contains User-Agents do not have OS information by the current OS configuration in the **config/config.yml**. See Configuration how to configure the log files
 
 ##Design
 The tool parses the command line swithes and loads the configuration file when the *analyzer* initialized. It then creates *logger*, *parser*, *aggregator*
