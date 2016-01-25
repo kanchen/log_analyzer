@@ -58,11 +58,9 @@ THe --ascending or -a command switch can be used to sort date in the ascending o
 
 ![Alt text](/data/ascending-file.jpg?raw=true "Result Screenshot")
 
-##Build
-Clone the github project. This tool is developed using Ruby 2.0. It requires the Ruby gem of psych to parse an YMAL configuration file. Please refer to [https://rubygems.org/gems/psych/versions/2.0.17] for inastallation.
-The only requirement to run the command tool is that it is executable on Linux machine or invoke is with Ruby
-* Linux: `chmod +x anaalyzer.rb`
-* Windows: `ruby anaalyzer.rb ...`
+##Install and Build
+Clone this github project. This tool is developed using Ruby 2.0. It requires the Ruby gem of *psych* to parse an YMAL configuration file. Please refer to [https://rubygems.org/gems/psych/versions/2.0.17] for inastallation.
+Make sure it is executable, or invoke it with Ruby.
 
 ##Testing
 Unit testing can be performed by the following command in the directory the project is cloned to:
@@ -72,10 +70,10 @@ Unit testing can be performed by the following command in the directory the proj
 ![Alt text](/data/unit-testings.jpg?raw=true "Result Screenshot")
 
 ##Configuration
-There is a configuration file config.yml. The tool will look for this file under user's $HOME/.analyzer/ directory or the config/ directory where the tool is installed if it does not exist in $HOME/.analyzer/. This configuration file has two sections. One section contains where and what are the log files to produce. The other section contains how the map different key words to OS categories. Parsing errors will be logged in the error file, while the info file contains entries that OS information is not found in User-Agents.
+There is a configuration file **config.yml**. The tool will look for this file under user's **$HOME/.analyzer/** directory or the **config/** directory where the tool is installed if it does not exist in **$HOME/.analyzer/**. This configuration file has two sections. One section contains where and what are the log files to produce. The other section contains how the map different key words to OS categories. Parsing errors will be logged in the error file, while the info file contains entries that OS information is not found in User-Agents.
 
 ##Results, Logs and Screenshots
-The result of the data/sample.log is contained in the file data/restuls.txt. There are also the files logs/analyzer_error.log and logs/analyzer_info.log. The error log file contains records can not be parsed as Apache combined log format. The info file contains User-Agents do not have OS information by the current OS configuration in the config/config.yml
+The result of the **data/sample.log** is contained in the file **data/restuls.txt**. There are also the files **logs/analyzer_error.log** and **logs/analyzer_info.log**. The error log file contains records can not be parsed as Apache combined log format. The info file contains User-Agents do not have OS information by the current OS configuration in the config/config.yml
 There are also several screenshots in the data directory to be reviewed.
 
 ##Design
