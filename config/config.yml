@@ -12,6 +12,7 @@ logger:
 os-list:
   - Linux:
   - Windows:
+# Windows NT does not need as it matches with Windows, list it here for demostration
     - Windows NT
   - "Mac OS":
     - OS X
@@ -21,5 +22,6 @@ os-list:
   - Android:
   - Solaris:
     - SunOS
+# Oracle Solaris does not needed. list here for demostration
     - Oracle Solaris
   - Unix:
