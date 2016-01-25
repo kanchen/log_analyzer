@@ -73,6 +73,8 @@ Unit testing can be performed by the following command in the directory the proj
 ##Configuration
 There is a configuration file **config.yml**. The tool will look for this file under user's **$HOME/.analyzer/** directory or the **config/** directory where the tool is installed if it does not exist in **$HOME/.analyzer/**. This configuration file has two sections. One section defines which directory and what log files logs go(see Results and Logs). The other section defines how to map different key words to OS categories.
 
+![Alt text](/data/config.jpg?raw=true "Result Screenshot")
+
 ##Results and Logs
 The result of the **data/sample.log** is contained in the file **data/restuls.txt**. There are also the files **logs/analyzer_error.log** and **logs/analyzer_info.log**. The error log file contains records can not be parsed as Apache combined log format. The info file contains User-Agents do not have OS information by the current OS configuration in the **config/config.yml**. See Configuration how to configure the log files
 
