@@ -23,7 +23,7 @@ Common options:
 ## Typical usage
 
 ### Process a log file and presents the result on the console screen
-The following command process the log file **data/sample.log** and presents the result on the stdout
+The following command processes the log file **data/sample.log** and presents the result on the stdout
 
 `./analyzer.rb -l data/sample.log`
 
@@ -38,7 +38,7 @@ The following command process the log file **data/sample.log**, and outputs the 
 ![Alt text](/data/output-file.jpg?raw=true "Result Screenshot")
 
 ### Process in verbose mode
-The **--versose** or **-v** command switch can be used to turn on verbose mode. The following two commands perform exactly the same as above cases excpet it outputs additional information to stdout
+The **--versose** or **-v** command switch can be used to turn on verbose mode. The following two commands perform exactly the same as above cases except it outputs additional information to stdout
 
 `./analyzer.rb -l data/sample.log -v`
 
@@ -48,8 +48,8 @@ The **--versose** or **-v** command switch can be used to turn on verbose mode. 
 
 ![Alt text](/data/verbose-with-output-screen.jpg?raw=true "Result Screenshot")
 
-### Sort date ascending mode
-The **--ascending** or **-a** command switch can be used to sort date in the ascending order. By default, date is sorted in the descending order(most recently first)
+### Sort dates ascending mode
+The **--ascending** or **-a** command switch can be used to sort dates in the ascending order. By default, dates are sorted in the descending order(most recently first)
 
 `./analyzer.rb --log-file data/sample.log --ascending`
 
@@ -60,23 +60,27 @@ The **--ascending** or **-a** command switch can be used to sort date in the asc
 ![Alt text](/data/ascending-file.jpg?raw=true "Result Screenshot")
 
 ##Install and Build
-Clone this github project. This tool is developed using Ruby 2.0. It requires the Ruby gem of **psych** to parse an YMAL configuration file(see Configuration). Please refer to [https://rubygems.org/gems/psych/versions/2.0.17] for the gem inastallation.
+Clone this github project. This tool is developed using Ruby 2.0. It requires the Ruby gem of **psych** to parse an YMAL configuration file(see Configuration). Please refer to [https://rubygems.org/gems/psych/versions/2.0.17] for the gem installation.
 Make sure **analyzer.rb** is executable, or invoke it with Ruby.
 
 ##Testing
-Unit testing can be performed by the following command in the directory the project is cloned to:
+Unit testing can be performed by the following command in the directory where the project is cloned to:
 
 `ruby tests/test_all_tests.rb`
 
 ![Alt text](/data/unit-testings.jpg?raw=true "Result Screenshot")
 
 ##Configuration
-There is a configuration file **config.yml**. The tool will look for this file under user's **$HOME/.analyzer/** directory or the **config/** directory where the tool is installed if it does not exist in **$HOME/.analyzer/**. This configuration file has two sections. One section defines which directory and what log files logs go(see Results and Logs). The other section defines how to map different key words to OS categories.
+There is a configuration file **config.yml**. The tool will look for this file under user's **$HOME/.analyzer/** directory or the **config/** directory where the tool is installed if it does not exist in **$HOME/.analyzer/**. This configuration file has two sections. One section defines which directory and what log files logs go(see Result and Log Filess). The other section defines how to map different key words to OS categories.
 
 ![Alt text](/data/config.jpg?raw=true "Result Screenshot")
 
-##Results and Logs
-The result of the **data/sample.log** is contained in the file **data/restuls.txt**. There are also the files **logs/analyzer_error.log** and **logs/analyzer_info.log**. The error log file contains records can not be parsed as Apache combined log format. The info file contains User-Agents do not have OS information by the current OS configuration in the **config/config.yml**. See Configuration how to configure the log files
+##Result and Log Filess
+The result of the **data/sample.log** is contained in the file **data/restuls.txt**.
+There are also the files **logs/analyzer_error.log** and **logs/analyzer_info.log**.
+The error log file contains records which can not be parsed as Apache combined log format.
+The info file contains records of User-Agents which do not have OS information by the current OS configuration in the **config/config.yml**.
+See Configuration how to configure the log files
 
 ##Design
 The tool parses the command line swithes and loads the configuration file when the *analyzer* initialized. It then creates *logger*, *parser*, *aggregator*
