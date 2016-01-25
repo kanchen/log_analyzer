@@ -40,7 +40,7 @@ module Analyzer
         aggregator.reports(analyzer.options.ascending)
 
         if analyzer.options.verbose
-          LogAnalyzer.summary(parser.records_processed, parser.records_rejected, matcher.agents_no_os)
+          summary(parser.records_processed, parser.records_rejected, matcher.agents_no_os)
         end
         rescue => e
           puts $!.message
