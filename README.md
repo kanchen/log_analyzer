@@ -40,9 +40,11 @@ The following command process the log file data/sample.log and outputs the resul
 The --versose or -v command switch can be used to turn on verbose mode. The following two commands perform exactly the same as above cases excpet it outputs additional information to stdout
 
 `./analyzer.rb -l data/sample.log -v`
+
 ![Alt text](/data/verbose-screen.jpg?raw=true "Result Screenshot")
 
 `./analyzer.rb -l data/sample.log -v -o data/results.txt`
+
 ![Alt text](/data/verbose-with-output-screen.jpg?raw=true "Result Screenshot")
 
 ### Sort date ascending mode
@@ -53,6 +55,7 @@ THe --ascending or -a command switch can be used to sort date in the ascending o
 ![Alt text](/data/ascending.jpg?raw=true "Result Screenshot")
 
 `./analyzer.rb --log-file data/sample.log --output-file data/results.txt -a`
+
 ![Alt text](/data/ascending-file.jpg?raw=true "Result Screenshot")
 
 ##Build
