@@ -83,5 +83,7 @@ The info file contains records of User-Agents which do not have OS information b
 See Configuration how to configure the log files
 
 ##Design
-The tool parses the command line swithes and loads the configuration file when the *analyzer* initialized. It then creates *logger*, *parser*, *aggregator*
-, and a OS *matcher*. As the *parser* parses each line in the log file, *matcher* tries to match OS from User-Agent and *aggregator* aggregates per day information. Parsing error or no OS match information is sent to the *logger*. Afer the *parser* finishes parsing ll the records, the *aggregator* reports the collected data.
+The tool parses the command line switches and loads the configuration file when the *analyzer* is initialized.
+It then creates a *logger*, a *parser*, an *aggregator*, and a OS *matcher*.
+As the *parser* parses each line in the log file, the *matcher* tries to match OS from the User-Agent information and the *aggregator* aggregates per day information. Parsing error or no OS match information is sent to the *logger*. Afer the *parser* finishes parsing all the records,
+the *aggregator* reports the collected data.
