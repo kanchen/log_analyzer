@@ -98,8 +98,8 @@ module Analyzer
 
       # data_list is an array of [k, v]
       def report_top_3_agents(data_list, f)
-        Analyzer::Utils.report_title(f, "Three(3) Most Frequent User Agents by Day")
-        f.printf "%-#{Analyzer::FIELD_LENGTH}s%-#{Analyzer::FIELD_LENGTH}s%-#{Analyzer::FIELD_LENGTH}s\n", "Date", "Requests", "User-Agent"
+        Utils.report_title(f, "Three(3) Most Frequent User Agents by Day")
+        f.printf "%-#{FIELD_LENGTH}s%-#{FIELD_LENGTH}s%-#{FIELD_LENGTH}s\n", "Date", "Requests", "User-Agent"
         data_list.each do |date, data|
           rank = 0
           (data[:agents].sort_by {|k,v| v}.reverse).each do |ag, rv|
@@ -107,35 +107,35 @@ module Analyzer
             if rank > 3
               break
             end
-            f.printf "%-#{Analyzer::FIELD_LENGTH}s%-#{Analyzer::FIELD_LENGTH}s%-#{Analyzer::FIELD_LENGTH}s\n", date, rv, ag
+            f.printf "%-#{FIELD_LENGTH}s%-#{FIELD_LENGTH}s%-#{FIELD_LENGTH}s\n", date, rv, ag
           end
         end
       end
 
       # data_list is an array of [k, v]
       def report_total_requests(data_list, f)
-        Analyzer::Utils.report_title(f, "Number of Requsts Servered by Day")
-        f.printf "%-#{Analyzer::FIELD_LENGTH}s%-#{Analyzer::FIELD_LENGTH}s\n", "Date", "Requests"
+        Utils.report_title(f, "Number of Requsts Servered by Day")
+        f.printf "%-#{FIELD_LENGTH}s%-#{FIELD_LENGTH}s\n", "Date", "Requests"
         data_list.each do |date, data|
-          f.printf "%-#{Analyzer::FIELD_LENGTH}s%-#{Analyzer::FIELD_LENGTH}s\n", date, data[:requests]
+          f.printf "%-#{FIELD_LENGTH}s%-#{FIELD_LENGTH}s\n", date, data[:requests]
         end
       end
 
       def report_os_get_post_ratio(data_list, f)
-        Analyzer::Utils.report_title(f, "GET to POST Ratio by OS by Day")
-          f.printf "%-#{Analyzer::FIELD_LENGTH}s", "Date"
+        Utils.report_title(f, "GET to POST Ratio by OS by Day")
+          f.printf "%-#{FIELD_LENGTH}s", "Date"
           (@os_list.map {|o| o.keys.first} + [OS_UNKOWN]).each do |o|
-            f.printf "%-#{Analyzer::FIELD_LENGTH}s", "#{o} G/P"
+            f.printf "%-#{FIELD_LENGTH}s", "#{o} G/P"
           end
           f.printf "\n"
 
           data_list.each do |date, data|
-            f.printf "%-#{Analyzer::FIELD_LENGTH}s", date
+            f.printf "%-#{FIELD_LENGTH}s", date
             (@os_list.map {|o| o.keys.first} + [OS_UNKOWN]).each do |o|
               no_gets = data[:oses][o]["GET"]
               no_posts = data[:oses][o]["POST"]
               ratio = no_posts == 0 ? "-" : (no_gets.to_f / no_posts.to_f).round(3)
-             f.printf "%-#{Analyzer::FIELD_LENGTH}s", ratio
+             f.printf "%-#{FIELD_LENGTH}s", ratio
             end
             f.printf "\n"
           end

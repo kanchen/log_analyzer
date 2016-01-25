@@ -98,12 +98,12 @@ module Analyzer
     def truncate
       File.open(@error_path, 'w') do |f|
         f.truncate(0)
-        Analyzer::Utils.timestamp(f)
+        Utils.timestamp(f)
       end
 
       File.open(@info_path, 'w') do |f|
         f.truncate(0)
-        Analyzer::Utils.timestamp(f)
+        Utils.timestamp(f)
       end
     end
 
