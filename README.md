@@ -23,21 +23,22 @@ Common options:
 ## Typical usage
 
 ### Process a log file and presnt the result on the console screen
-The following command process the log file data/sample.log and presents the result on the stdout
+The following command process the log file **data/sample.log** and presents the result on the stdout
 
 `./analyzer.rb -l data/sample.log`
 
 ![Alt text](/data/regular-screen.jpg?raw=true "Result Screenshot")
 
 ### Process a log file and output the result to a file
-The following command process the log file data/sample.log and outputs the result to data/results.txt file
+The following command process the log file **data/sample.log**, and outputs the result to **data/results.txt** file. The screenshot uses 
+**cat data/results.tx** to show the result.
 
 `./analyzer.rb --log-file data/sample.log --output-file data/results.txt`
 
 ![Alt text](/data/output-file.jpg?raw=true "Result Screenshot")
 
 ### Process in verbose mode
-The --versose or -v command switch can be used to turn on verbose mode. The following two commands perform exactly the same as above cases excpet it outputs additional information to stdout
+The **--versose** or **-v** command switch can be used to turn on verbose mode. The following two commands perform exactly the same as above cases excpet it outputs additional information to stdout
 
 `./analyzer.rb -l data/sample.log -v`
 
@@ -48,7 +49,7 @@ The --versose or -v command switch can be used to turn on verbose mode. The foll
 ![Alt text](/data/verbose-with-output-screen.jpg?raw=true "Result Screenshot")
 
 ### Sort date ascending mode
-THe --ascending or -a command switch can be used to sort date in the ascending order. By default, date is sorted in the descending order(most recently first)
+THe **--ascending** or **-a** command switch can be used to sort date in the ascending order. By default, date is sorted in the descending order(most recently first)
 
 `./analyzer.rb --log-file data/sample.log --ascending`
 
@@ -78,4 +79,4 @@ There are also several screenshots in the data directory to be reviewed.
 
 ##Design
 The tool parses the command line swithes and loads the configuration file when the *analyzer* initialized. It then creates *logger*, *parser*, *aggregator*
-OS *matcher*. As the *parser* parses each line in the log file, *matcher* tries to match OS from user-agent and *aggregator* aggregates per day information. Parsing error or no match information is sent to the *logger*. Afer the *parser* finished all the records, the *aggregator* reports the collected data.
+, and a OS *matcher*. As the *parser* parses each line in the log file, *matcher* tries to match OS from User-Agent and *aggregator* aggregates per day information. Parsing error or no OS match information is sent to the *logger*. Afer the *parser* finishes parsing ll the records, the *aggregator* reports the collected data.
