@@ -85,5 +85,5 @@ See Configuration how to configure the log files
 ##Design
 The tool parses the command line switches and loads the configuration file when the *analyzer* is initialized.
 It then creates a *logger*, a *parser*, an *aggregator*, and a OS *matcher*.
-As the *parser* parses each line in the log file, the *matcher* tries to match OS from the User-Agent information and the *aggregator* aggregates per day information. Parsing error or no OS match information is sent to the *logger*. Afer the *parser* finishes parsing all the records,
+As the *parser* parses each line in the log file, the *matcher* tries to match the OS from the User-Agent information and the *aggregator* aggregates per day information. Parsing error and/or no OS match information are sent to the *logger*. After the *parser* finishes parsing all the records,
 the *aggregator* reports the collected data.
