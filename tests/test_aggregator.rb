@@ -29,7 +29,7 @@ class TestAggregator < Test::Unit::TestCase
     assert(!@ag.data_bag.empty?)
     assert((! @ag.data_bag[date1].nil?) && (!@ag.data_bag[date1].empty?))
 
-    add_help1(date1, ua1, ua2)
+    add_helper_1(date1, ua1, ua2)
 
     @ag.add(date2, "GET", "Linux", ua1)
     @ag.add(date2, "POST", "Linux", ua1)
@@ -46,11 +46,11 @@ class TestAggregator < Test::Unit::TestCase
     assert_equal(1, @ag.data_bag[date2][:oses]["Windows"]["POST"])
 
     #make sure date1 data does not change
-    add_help1(date1, ua1, ua2)
+    add_helper_1(date1, ua1, ua2)
 
   end
 
-  def add_help1(date, ua1, ua2)
+  def add_helper_1(date, ua1, ua2)
     assert_equal(3, @ag.data_bag[date][:requests])
     assert_equal(2, @ag.data_bag[date][:agents][ua1])
     assert_equal(1, @ag.data_bag[date][:agents][ua2])
