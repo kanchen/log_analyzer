@@ -1,0 +1,27 @@
++++++++++++++++++++++++++++++++++++++
++ Number of Requsts Servered by Day +
++++++++++++++++++++++++++++++++++++++
+Date            Requests        
+03/Dec/2011     604             
+02/Dec/2011     2572            
+01/Dec/2011     2821            
++++++++++++++++++++++++++++++++++++++++++++++
++ Three(3) Most Frequent User Agents by Day +
++++++++++++++++++++++++++++++++++++++++++++++
+Date            Requests        User-Agent      
+03/Dec/2011     142             Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
+03/Dec/2011     68              Mozilla/5.0 (compatible; Yahoo! Slurp; http://help.yahoo.com/help/us/ysearch/slurp)
+03/Dec/2011     36              Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)
+02/Dec/2011     364             Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
+02/Dec/2011     281             Mozilla/5.0 (compatible; Yahoo! Slurp; http://help.yahoo.com/help/us/ysearch/slurp)
+02/Dec/2011     178             Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)
+01/Dec/2011     456             Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
+01/Dec/2011     324             Mozilla/5.0 (compatible; Yahoo! Slurp; http://help.yahoo.com/help/us/ysearch/slurp)
+01/Dec/2011     245             Mozilla/5.0 (compatible; Ezooms/1.0; ezooms.bot@gmail.com)
+++++++++++++++++++++++++++++++++++
++ GET to POST Ratio by OS by Day +
+++++++++++++++++++++++++++++++++++
+Date            Linux G/P       Windows G/P     Mac OS G/P      iOS G/P         Android G/P     Solaris G/P     Unix G/P        NA G/P          
+03/Dec/2011     25.0            3.025           -               -               -               -               -               14.6            
+02/Dec/2011     116.0           3.269           -               -               -               -               -               14.5            
+01/Dec/2011     123.0           3.904           -               -               -               -               -               15.963          
